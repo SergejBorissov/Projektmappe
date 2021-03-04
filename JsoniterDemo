@@ -105,3 +105,178 @@ public class User {
 
 
 
+
+
+
+
+---------------------------------
+
+
+// Mustercode für build.gradle
+plugins {
+    id 'java'
+    // add
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+// add
+mainClassName = 'com.jsoniter.demo.Demo'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+//JSONITER
+dependencies {
+// https://mvnrepository.com/artifact/com.jsoniter/jsoniter
+    implementation group: 'com.jsoniter', name: 'jsoniter', version: '0.9.23'
+}
+
+// add
+javafx {
+    version = "11"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+
+---------------------------
+
+
+
+
+
+
+package jsoniter_codegen.cfg1173796797.decoder.com.jsoniter.demo;
+
+public class User implements com.jsoniter.spi.Decoder {
+    public static java.lang.Object decode_(com.jsoniter.JsonIterator iter) throws java.io.IOException { java.lang.Object existingObj = com.jsoniter.CodegenAccess.resetExistingObject(iter);
+        byte nextToken = com.jsoniter.CodegenAccess.readByte(iter);
+        if (nextToken != '{') {
+            if (nextToken == 'n') {
+                com.jsoniter.CodegenAccess.skipFixedBytes(iter, 3);
+                return null;
+            } else {
+                nextToken = com.jsoniter.CodegenAccess.nextToken(iter);
+                if (nextToken == 'n') {
+                    com.jsoniter.CodegenAccess.skipFixedBytes(iter, 3);
+                    return null;
+                }
+            } // end of if null
+        } // end of if {
+        nextToken = com.jsoniter.CodegenAccess.readByte(iter);
+        if (nextToken != '"') {
+            if (nextToken == '}') {
+                return (existingObj == null ? new com.jsoniter.demo.User() : (com.jsoniter.demo.User)existingObj);
+            } else {
+                nextToken = com.jsoniter.CodegenAccess.nextToken(iter);
+                if (nextToken == '}') {
+                    return (existingObj == null ? new com.jsoniter.demo.User() : (com.jsoniter.demo.User)existingObj);
+                } else {
+                    com.jsoniter.CodegenAccess.unreadByte(iter);
+                }
+            } // end of if end
+        } else { com.jsoniter.CodegenAccess.unreadByte(iter); }// end of if not quote
+        java.lang.String _firstName_ = null;
+        java.lang.String _lastName_ = null;
+        int _score_ = 0;
+        com.jsoniter.any.Any _attachment_ = null;
+        do {
+            switch (com.jsoniter.CodegenAccess.readObjectFieldAsHash(iter)) {
+                case -1513391000:
+                    _attachment_ = (com.jsoniter.any.Any)iter.readAny();
+                    continue;
+                case -1078100014:
+                    _lastName_ = (java.lang.String)iter.readString();
+                    continue;
+                case -799547430:
+                    _firstName_ = (java.lang.String)iter.readString();
+                    continue;
+                case -768634731:
+                    _score_ = (int)com.jsoniter.CodegenAccess.readInt("score@jsoniter_codegen.cfg1173796797.decoder.com.jsoniter.demo.User", iter);
+                    continue;
+            }
+            iter.skip();
+        } while (com.jsoniter.CodegenAccess.nextTokenIsComma(iter));
+        com.jsoniter.demo.User obj = (existingObj == null ? new com.jsoniter.demo.User() : (com.jsoniter.demo.User)existingObj);
+        obj.firstName = _firstName_;
+        obj.lastName = _lastName_;
+        obj.score = _score_;
+        obj.attachment = _attachment_;
+        return obj;
+    }public java.lang.Object decode(com.jsoniter.JsonIterator iter) throws java.io.IOException {
+        return decode_(iter);
+    }
+}
+
+--------------------------------
+
+
+package jsoniter_codegen.cfg1173796797.encoder.com.jsoniter.demo;
+
+public class User implements com.jsoniter.spi.Encoder {
+    public void encode(java.lang.Object obj, com.jsoniter.output.JsonStream stream) throws java.io.IOException {
+        if (obj == null) { stream.writeNull(); return; }
+        encode_((com.jsoniter.demo.User)obj, stream);
+    }
+    public static void encode_(com.jsoniter.demo.User obj, com.jsoniter.output.JsonStream stream) throws java.io.IOException {
+        stream.writeObjectStart();
+        stream.writeIndention();
+        stream.writeObjectField("firstName");
+        stream.writeVal((java.lang.String)obj.firstName);
+        stream.writeMore();
+        stream.writeObjectField("lastName");
+        stream.writeVal((java.lang.String)obj.lastName);
+        stream.writeMore();
+        stream.writeObjectField("score");
+        stream.writeVal((int)obj.score);
+        stream.writeMore();
+        stream.writeObjectField("attachment");
+        if (obj.attachment == null) { stream.writeNull(); } else {
+            stream.writeVal((com.jsoniter.any.Any)obj.attachment);
+        }
+        stream.writeObjectEnd();
+    }
+}
+
+
+-----------------------------------
+
+package jsoniter_codegen.cfg1173796797.encoder;
+
+public class int_array implements com.jsoniter.spi.Encoder {
+    public void encode(java.lang.Object obj, com.jsoniter.output.JsonStream stream) throws java.io.IOException {
+        if (obj == null) { stream.writeNull(); return; }
+        encode_((int[])obj, stream);
+    }
+    public static void encode_(java.lang.Object obj, com.jsoniter.output.JsonStream stream) throws java.io.IOException {
+        int[] arr = (int[])obj;
+        if (arr.length == 0) { stream.write((byte)'[', (byte)']'); return; }
+        stream.writeArrayStart(); stream.writeIndention();
+        int i = 0;
+        int e = arr[i++];
+        stream.writeVal((int)e);
+        while (i < arr.length) {
+            stream.writeMore();
+            e = arr[i++];
+            stream.writeVal((int)e);
+        }
+        stream.writeArrayEnd();
+    }
+}
+
+
+-----------------------------------------
+
+
+
+
