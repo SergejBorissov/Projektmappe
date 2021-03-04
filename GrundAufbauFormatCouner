@@ -1,0 +1,29 @@
+package formatVisualisierer;
+
+
+/**
+ * @author sborissov
+ *
+ * Es sollte eine Aufzählung der
+ * verschiedenen Dateiformate innerhalb eines Ordners
+ * stattfinden und danach in ein Diagram
+ * dargestellt.
+ * Idealerweise würde auch die Dateigröße
+ * dargestellt!
+ * 
+ */
+
+public class Main {
+
+
+        public int checkFormat(){
+
+            // rekursives durchgehen der Datein
+            // und jedes mal wenn z.B. die endung .csv
+            //ertastet worden ist, im CSVCounter hochzählen
+
+               return 0;
+        }
+
+    }
+}
