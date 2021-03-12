@@ -1,0 +1,30 @@
+package converter;
+
+
+import netscape.javascript.JSObject;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.CSVRecord;
+import org.json.JSONObject;
+import org.json.XML;
+
+import java.io.FileNotFoundException;
+
+public class JsonToCsv {
+
+    
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        String json_data = "{\"student\":[{\"name\":\"Debu Paul\", \"age\":\"27\"},"
+                + "{\"name\":\"Subhomoy Dey\", \"age\":\"28\"}]}";
+
+        JSONObject object = new JSONObject(json_data);
+
+       // String csv_data = CSV.toString(object);
+        //System.out.println(csv_data);
+
+    }
+}
+
