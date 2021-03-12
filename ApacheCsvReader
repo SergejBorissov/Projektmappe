@@ -1,0 +1,30 @@
+package com.ablex;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+public class ApacheCSVReader {
+
+    public static void main(String[] args) {
+
+        final File file = new File("/home/sborissov/Schreibtisch/beispiel.csv");
+        try (final CSVParser p = CSVParser.parse(file, StandardCharsets.UTF_8, CSVFormat.EXCEL)) {
+            final List<CSVRecord> resords = p.getRecords();
+            for (final CSVRecord csvRecord : resords) {
+                for (int i = 0; i < csvRecord.size(); i++) {
+                    System.out.print(csvRecord.get(i) + " ");
+                }
+                System.out.println("");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
