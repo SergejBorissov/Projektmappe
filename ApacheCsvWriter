@@ -1,0 +1,27 @@
+package com.ablex;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
+public class ApacheCSVWriter {
+
+    public static void main(String[] args) {
+
+
+        try (Writer writer = new FileWriter("my.csv")) {
+            final CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.POSTGRESQL_CSV);
+            for (int i = 1; i < 11; ++i) {
+                for (int j = 0; j < 4; ++j) {
+                    csvPrinter.print(i + 10 * j);
+                }
+                csvPrinter.println();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
