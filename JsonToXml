@@ -1,0 +1,22 @@
+package converter;
+
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
+import org.json.XML;
+
+import java.io.FileNotFoundException;
+
+public class JsonToXml {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        String json_data = "{\"student\":[{\"name\":\"Debu Paul\", \"age\":\"27\"},"
+                + "{\"name\":\"Subhomoy Dey\", \"age\":\"28\"}]}";
+
+        JSONObject object = new JSONObject(json_data);
+
+        String xml_data = XML.toString(object);
+        System.out.println(xml_data);
+
+    }
+}
